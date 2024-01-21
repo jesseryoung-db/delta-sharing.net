@@ -18,7 +18,7 @@ public sealed class SharingClient
         this.restClient = restClient;
     }
 
-    public async IAsyncEnumerable<string> ListSharesAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
+    public async IAsyncEnumerable<Share> ListSharesAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         var shares = await this.restClient.ListSharesAsync(cancellationToken: cancellationToken);
 
@@ -26,7 +26,7 @@ public sealed class SharingClient
         {
             foreach (var share in shares.Items)
             {
-                yield return share.Name;
+                yield return share;
             }
             if (shares.NextPageToken == null)
             {
@@ -37,7 +37,7 @@ public sealed class SharingClient
         }
     }
 
-    public async IAsyncEnumerable<string> ListSchemasAsync(string share, [EnumeratorCancellation] CancellationToken cancellationToken = default)
+    public async IAsyncEnumerable<Schema> ListSchemasAsync(string share, [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         var schemas = await this.restClient.ListSchemasAsync(share, cancellationToken: cancellationToken);
 
@@ -45,7 +45,7 @@ public sealed class SharingClient
         {
             foreach (var schema in schemas.Items)
             {
-                yield return schema.Name;
+                yield return schema;
             }
             if (schemas.NextPageToken == null)
             {
@@ -56,7 +56,7 @@ public sealed class SharingClient
         }
     }
 
-    public async IAsyncEnumerable<string> ListTablesAsync(string share, string schema, [EnumeratorCancellation] CancellationToken cancellationToken = default)
+    public async IAsyncEnumerable<Table> ListTablesAsync(string share, string schema, [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         var tables = await this.restClient.ListTablesAsync(share, schema, cancellationToken: cancellationToken);
 
@@ -64,7 +64,7 @@ public sealed class SharingClient
         {
             foreach (var table in tables.Items)
             {
-                yield return table.Name;
+                yield return table;
             }
             if (tables.NextPageToken == null)
             {

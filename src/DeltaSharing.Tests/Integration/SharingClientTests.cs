@@ -23,5 +23,4 @@ public class SharingClientTests : IClassFixture<RestClientFixture>
         var tableReader = await this.client.QueryTableAsync("delta_sharing", "default", "nyctaxi_2019");
         Assert.NotNull(tableReader);
     }
-
 }
