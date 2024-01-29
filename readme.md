@@ -30,3 +30,14 @@ await foreach (var row in tableReader.ReadTableAsync<COVID19NYT>())
 }
 
 ```
+
+Publishing Fit & Finish
+=======================
+Checklist for fit & finish before publishing to Nuget
+
+- [ ] Implement missing metadata and protocol methods on `SharingClient`
+- [ ] Add `SharingClient` interface
+- [ ] Document all public facing methods
+- [ ] Add in unit tests to test basic functionality
+- [ ] Build Github CI/CD to test and publish package
+- [ ] Add in example usage project
